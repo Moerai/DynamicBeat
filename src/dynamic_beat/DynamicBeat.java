@@ -1,4 +1,4 @@
-package dynamic_beat_2;
+package dynamic_beat;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,6 +21,9 @@ public class DynamicBeat extends JFrame{
 		setVisible(true);
 		
 		introBackground = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();
+		
+		Music introMusic = new Music("introMusic.mp3", true);
+		introMusic.start();
 	}
 	public void screenDraw(Graphics g) {
 		g.drawImage(introBackground, 0, 0, null);
