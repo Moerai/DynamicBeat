@@ -26,7 +26,7 @@ public class DynamicBeat extends JFrame {
 	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/quitButtonEntered.png"));
 	
 	
-	private Image introBackground = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();;
+	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));
 	
 	private JButton exitButton = new JButton(exitButtonBasicImage);
@@ -101,13 +101,15 @@ public class DynamicBeat extends JFrame {
 					public void mousePressed(MouseEvent e) {
 						Music buttonPressedMusic = new Music("buttonPressedMusic.mp3",false);
 						buttonPressedMusic.start();
-						//todo list 시작 이벤트
+						startButton.setVisible(false);
+						quitButton.setVisible(false);
+						background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
 					}
 				});
 				add(startButton);
 				
 				//게임종료버튼
-				quitButton.setBounds(40, 330, 400, 100);
+				quitButton.setBounds(40, 400, 400, 100);
 				quitButton.setBorderPainted(false);
 				quitButton.setContentAreaFilled(false);
 				quitButton.setFocusPainted(false);
@@ -163,7 +165,7 @@ public class DynamicBeat extends JFrame {
 	}
 
 	public void screenDraw(Graphics g) {
-		g.drawImage(introBackground, 0, 0, null);
+		g.drawImage(background, 0, 0, null);
 		printComponents(g);
 		this.repaint();
 	}
