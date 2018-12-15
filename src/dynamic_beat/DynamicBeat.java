@@ -253,7 +253,7 @@ public class DynamicBeat extends JFrame {
 					public void mousePressed(MouseEvent e) {
 						Music buttonPressedMusic = new Music("buttonPressedMusic.mp3",false);
 						buttonPressedMusic.start();
-						
+						gameStart(nowSelected,"easy");
 					}
 				});
 				add(easyButton);
@@ -278,7 +278,7 @@ public class DynamicBeat extends JFrame {
 					public void mousePressed(MouseEvent e) {
 						Music buttonPressedMusic = new Music("buttonPressedMusic.mp3",false);
 						buttonPressedMusic.start();
-						//난이도 어려움 이벤트
+						gameStart(nowSelected,"hard");
 					}
 				});
 				add(hardButton);
@@ -338,11 +338,22 @@ public class DynamicBeat extends JFrame {
 			nowSelected--;
 		selectTrack(nowSelected);
 	}
+	
 	public void selectRight() {
 		if(nowSelected == trackList.size() - 1)
 			nowSelected = 0;
 		else
 			nowSelected++;
 		selectTrack(nowSelected);
+	}
+	public void gameStart(int nowSelected, String difficulty) {
+		if(selectedMusic != null)
+			selectedMusic.close();
+		isMainScreen = false;
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		easyButton.setVisible(false);
+		hardButton.setVisible(false);
+		background = new ImageIcon(Main.class.getResource("../images/"+trackList.get(nowSelected).getGameImamge())).getImage();
 	}
 }
