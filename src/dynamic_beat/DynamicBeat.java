@@ -140,6 +140,8 @@ public class DynamicBeat extends JFrame {
 						quitButton.setVisible(false);
 						leftButton.setVisible(true);
 						rightButton.setVisible(true);
+						easyButton.setVisible(true);
+						hardButton.setVisible(true);
 						background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
 						isMainScreen = true;
 					}
@@ -229,6 +231,57 @@ public class DynamicBeat extends JFrame {
 					}
 				});
 				add(rightButton);
+				
+				//쉬움 난이도 선택
+				easyButton.setVisible(false);
+				easyButton.setBounds(375, 580, 250, 67);
+				easyButton.setBorderPainted(false);
+				easyButton.setContentAreaFilled(false);
+				easyButton.setFocusPainted(false);
+				easyButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						easyButton.setIcon(easyButtonEnteredImage);
+						easyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						easyButton.setIcon(easyButtonBasicImage);
+						easyButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+					}
+					@Override
+					public void mousePressed(MouseEvent e) {
+						Music buttonPressedMusic = new Music("buttonPressedMusic.mp3",false);
+						buttonPressedMusic.start();
+						
+					}
+				});
+				add(easyButton);
+				//어려움 난이도 선택
+				hardButton.setVisible(false);
+				hardButton.setBounds(655, 580, 250, 67);
+				hardButton.setBorderPainted(false);
+				hardButton.setContentAreaFilled(false);
+				hardButton.setFocusPainted(false);
+				hardButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						hardButton.setIcon(hardButtonEnteredImage);
+						hardButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						hardButton.setIcon(hardButtonBasicImage);
+						hardButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+					}
+					@Override
+					public void mousePressed(MouseEvent e) {
+						Music buttonPressedMusic = new Music("buttonPressedMusic.mp3",false);
+						buttonPressedMusic.start();
+						//난이도 어려움 이벤트
+					}
+				});
+				add(hardButton);
 				
 				
 		//메뉴바
