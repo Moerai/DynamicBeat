@@ -68,7 +68,8 @@ public class DynamicBeat extends JFrame {
 	private Music selectedMusic;
 	private int nowSelected = 0; // Array의 인덱스
 	
-	Game game = new Game();
+	//game의 기능만 가지고 있는 클레스 작성
+	public static Game game = new Game();
 	
 	public DynamicBeat() {
 		setUndecorated(true);
@@ -80,7 +81,7 @@ public class DynamicBeat extends JFrame {
 		setVisible(true);
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
-
+		//키보드이벤트를 받아주는 키보드리스너를 추가
 		addKeyListener(new KeyListener());
 			
 		introMusic.start();
@@ -414,6 +415,8 @@ public class DynamicBeat extends JFrame {
 		background = new ImageIcon(Main.class.getResource("../images/" + trackList.get(nowSelected).getGameImamge()))
 				.getImage();
 		isGameScreen = true;
+		//화면이 계속 바뀌다보면 위치에 문제가 생길 수도 있어서 넣어줌..
+		setFocusable(true);
 	}
 
 	public void backMain() {

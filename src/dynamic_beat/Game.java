@@ -11,20 +11,27 @@ import javax.swing.ImageIcon;
 public class Game extends Thread{
 	
 	private Image gameInfoImage = new ImageIcon(Main.class.getResource("../images/gameInfo.png")).getImage();
-	private Image noteRouteImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
 	private Image noteBasicImage = new ImageIcon(Main.class.getResource("../images/noteBasic.png")).getImage();
 	private Image noteRouteLineImage = new ImageIcon(Main.class.getResource("../images/noteRouteLine.png")).getImage();
 	private Image judgmentLineImage = new ImageIcon(Main.class.getResource("../images/judgementLine.png")).getImage();
+	private Image noteRouteSImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteDImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteFImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteSpace1Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteSpace2Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteJImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteKImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();	
+	private Image noteRouteLImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
 	
 	public void screenDraw(Graphics2D g) {
-		g.drawImage(noteRouteImage, 228, 30, null);
-		g.drawImage(noteRouteImage, 332, 30, null);
-		g.drawImage(noteRouteImage, 436, 30, null);
-		g.drawImage(noteRouteImage, 540, 30, null);
-		g.drawImage(noteRouteImage, 640, 30, null);
-		g.drawImage(noteRouteImage, 744, 30, null);
-		g.drawImage(noteRouteImage, 848, 30, null);
-		g.drawImage(noteRouteImage, 952, 30, null);
+		g.drawImage(noteRouteSImage, 228, 30, null);
+		g.drawImage(noteRouteDImage, 332, 30, null);
+		g.drawImage(noteRouteFImage, 436, 30, null);
+		g.drawImage(noteRouteSpace1Image, 540, 30, null);
+		g.drawImage(noteRouteSpace2Image, 640, 30, null);
+		g.drawImage(noteRouteJImage, 744, 30, null);
+		g.drawImage(noteRouteKImage, 848, 30, null);
+		g.drawImage(noteRouteLImage, 952, 30, null);
 		g.drawImage(noteRouteLineImage, 224, 30, null);
 		g.drawImage(noteRouteLineImage, 328, 30, null);
 		g.drawImage(noteRouteLineImage, 432, 30, null);
@@ -54,6 +61,57 @@ public class Game extends Thread{
 		g.setColor(Color.LIGHT_GRAY);
 		g.setFont(new Font("Elephant",Font.BOLD,30));
 		g.drawString("000000", 565,702);
+	}
+	public void pressS() {
+		noteRouteSImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseS() {
+		noteRouteSImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressD() {
+		noteRouteDImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseD() {
+		noteRouteDImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressF() {
+		noteRouteFImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseF() {
+		noteRouteFImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressSpace() {
+		noteRouteSpace1Image = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		noteRouteSpace2Image = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumBig1.mp3",false).start();
+	}
+	public void releaseSpace() {
+		noteRouteSpace1Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+		noteRouteSpace2Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressJ() {
+		noteRouteJImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseJ() {
+		noteRouteJImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressK() {
+		noteRouteKImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseK() {
+		noteRouteKImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	}
+	public void pressL() {
+		noteRouteLImage = new ImageIcon(Main.class.getResource("../images/noteRoutePressed.png")).getImage();
+		new Music("drumSmall1.mp3",false).start();
+	}
+	public void releaseL() {
+		noteRouteLImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
 	}
 	@Override
 	public void run() {
