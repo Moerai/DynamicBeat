@@ -81,8 +81,10 @@ public class DynamicBeat extends JFrame {
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
 
+		addKeyListener(new KeyListener());
+			
 		introMusic.start();
-
+		
 		// track리스트
 		trackList.add(new Track("Start Of Something New Title Image.png", "Start Of Something New Start Image.jpg",
 				"Start Of Something New Game Image.jpg", "Start of something new Selected.mp3",
