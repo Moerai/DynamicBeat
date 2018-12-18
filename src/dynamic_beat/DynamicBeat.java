@@ -2,11 +2,9 @@ package dynamic_beat;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -58,7 +56,7 @@ public class DynamicBeat extends JFrame {
 
 	private boolean isMainScreen = false;
 	private boolean isGameScreen = false;
-	
+
 	ArrayList<Track> trackList = new ArrayList<Track>();
 
 	private Image titleImage;
@@ -67,11 +65,20 @@ public class DynamicBeat extends JFrame {
 	private Music introMusic = new Music("introMusic.mp3", true);
 	private Music selectedMusic;
 	private int nowSelected = 0; // Array의 인덱스
-	
-	//game의 기능만 가지고 있는 클레스 작성
+
+	// game의 기능만 가지고 있는 클레스 작성
 	public static Game game;
-	
+
 	public DynamicBeat() {
+		// track리스트
+		trackList.add(new Track("Start Of Something New Title Image.png", "Start Of Something New Start Image.jpg",
+				"Start Of Something New Game Image.jpg", "Start of something new Selected.mp3",
+				"High School Musical-Start of something new.mp3", "Start Of Something New"));
+		trackList.add(new Track("I Gotta Go My Own Way Title Image.png", "I Gotta Go My Own Way Start Image.jpg",
+				"I Gotta Go My Own Way Game Image.jpg", "I Gotta Go My Own Way Selected.mp3",
+				"High School Musical 2 - I Gotta Go My Own Way.mp3", "I Gotta Go My Own Way"));
+		trackList.add(new Track("Now Or Never Title Image.png", "Now Or Never Start Image.jpg", "Now Or Never game Image.jpg",
+						"Now Or Never Selected.mp3", "High School Musical 3 - Now Or Never.mp3", "Now Or Never"));
 		setUndecorated(true);
 		setTitle("DynamicBeat");
 		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HIGHT);
@@ -81,21 +88,10 @@ public class DynamicBeat extends JFrame {
 		setVisible(true);
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
-		//키보드이벤트를 받아주는 키보드리스너를 추가
+		// 키보드이벤트를 받아주는 키보드리스너를 추가
 		addKeyListener(new KeyListener());
-			
+
 		introMusic.start();
-		
-		// track리스트
-		trackList.add(new Track("Start Of Something New Title Image.png", "Start Of Something New Start Image.jpg",
-				"Start Of Something New Game Image.jpg", "Start of something new Selected.mp3",
-				"High School Musical-Start of something new.mp3","Start Of Something New"));
-		trackList.add(new Track("I Gotta Go My Own Way Title Image.png", "I Gotta Go My Own Way Start Image.jpg",
-				"I Gotta Go My Own Way Game Image.jpg", "I Gotta Go My Own Way Selected.mp3",
-				"High School Musical 2 - I Gotta Go My Own Way.mp3","I Gotta Go My Own Way"));
-		trackList.add(
-				new Track("Now Or Never Title Image.png", "Now Or Never Start Image.jpg", "Now Or Never game Image.jpg",
-						"Now Or Never Selected.mp3", "High School Musical 3 - Now Or Never.mp3","Now Or Never"));
 
 		// 닫기버튼
 		exitButton.setBounds(1245, 0, 30, 30);
@@ -366,13 +362,14 @@ public class DynamicBeat extends JFrame {
 			game.screenDraw(g);
 		}
 		printComponents(g);
+		
 		this.repaint();
 	}
 
-	public void paint(Graphics g) {
+	public void paintStartOfSomethingNew(Graphics g) {
 		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HIGHT);
 		screenGraphic = screenImage.getGraphics();
-		screenDraw((Graphics2D)screenGraphic);
+		screenDraw((Graphics2D) screenGraphic);
 		g.drawImage(screenImage, 0, 0, null);
 	}
 
@@ -415,9 +412,11 @@ public class DynamicBeat extends JFrame {
 		background = new ImageIcon(Main.class.getResource("../images/" + trackList.get(nowSelected).getGameImamge()))
 				.getImage();
 		isGameScreen = true;
-		//화면이 계속 바뀌다보면 위치에 문제가 생길 수도 있어서 넣어줌..
+		// 화면이 계속 바뀌다보면 위치에 문제가 생길 수도 있어서 넣어줌..
+		game = new Game(trackList.get(nowSelected).getTitleName(), difficulty,
+				trackList.get(nowSelected).getGameMusic());
+		game.start();
 		setFocusable(true);
-		game = new Game(trackList.get(nowSelected).getTitleName(),difficulty,trackList.get(nowSelected).getGameMusic());
 	}
 
 	public void backMain() {

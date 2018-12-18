@@ -27,13 +27,13 @@ public class Game extends Thread{
 	private String musicTitle;
 	private Music gameMusic;
 	
+	ArrayList<Note> noteList = new ArrayList<Note>();
 	
 	public Game(String titleName, String difficulty, String musicTitle) {
 		this.titleName = titleName;
 		this.difficulty = difficulty;
 		this.musicTitle = musicTitle;
 		gameMusic = new Music(this.musicTitle, false);
-		gameMusic.start();
 	}
 	public void screenDraw(Graphics2D g) {
 		g.drawImage(noteRouteSImage, 228, 30, null);
@@ -52,6 +52,10 @@ public class Game extends Thread{
 		g.drawImage(noteRouteLineImage, 844, 30, null);
 		g.drawImage(noteRouteLineImage, 948, 30, null);
 		g.drawImage(noteRouteLineImage, 1052, 30, null);
+		for(int i=0;i<noteList.size();i++) {
+			Note note = noteList.get(i);
+			note.screenDraw(g);
+		}
 		g.drawImage(gameInfoImage, 0, 660, null);
 		g.drawImage(judgmentLineImage, 0, 580, null);
 		g.setColor(Color.WHITE);
@@ -127,7 +131,49 @@ public class Game extends Thread{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		super.run();
+		dropNotes();
+	}
+	
+	public void dropNotes() {
+		Beat[] beats = null;
+		if(titleName.equals("Start Of Something New")){
+			int startTime = 4460 - Main.REACH_TIME * 1000;
+			int gap = 125;
+			beats = new Beat[] {
+					new Beat(startTime, "S"),
+					new Beat(startTime + gap*2,"D")
+			};
+		}else if(titleName.equals("I Gotta Go My Own Way")) {
+			int startTime = 1000;
+			beats = new Beat[] {
+					new Beat(startTime,"Space"),
+			};
+		}else if(titleName.equals("Now Or Never")) {
+			int startTime = 1000;
+			beats = new Beat[] {
+					new Beat(startTime,"Space"),
+			};
+		}
+		int i = 0;
+		gameMusic.start();
+		while(true) {
+			if(beats[i].getTime()<=gameMusic.getTime()) {
+				Note note = new Note(beats[i].getNoteName());
+				note.start();
+				noteList.add(note);
+				i++;
+			}
+			
+		}
+//		note.start();
+//		noteList.add(note);
+//		noteList.add(new Note(228,120,"short"));
+//		noteList.add(new Note(332,580,"short"));
+//		noteList.add(new Note(436,500,"short"));
+//		noteList.add(new Note(540,340,"long"));
+//		noteList.add(new Note(744,325,"short"));
+//		noteList.add(new Note(848,305,"short"));
+//		noteList.add(new Note(952,305,"short"));
 	}
 
 	//게임 종료 메소드(쓰레드를 종료시킴)
@@ -135,5 +181,4 @@ public class Game extends Thread{
 		gameMusic.close();
 		this.interrupt();
 	}
-	
 }
