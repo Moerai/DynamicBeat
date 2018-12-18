@@ -5,13 +5,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 public class Game extends Thread{
 	
 	private Image gameInfoImage = new ImageIcon(Main.class.getResource("../images/gameInfo.png")).getImage();
-	private Image noteBasicImage = new ImageIcon(Main.class.getResource("../images/noteBasic.png")).getImage();
 	private Image noteRouteLineImage = new ImageIcon(Main.class.getResource("../images/noteRouteLine.png")).getImage();
 	private Image judgmentLineImage = new ImageIcon(Main.class.getResource("../images/judgementLine.png")).getImage();
 	private Image noteRouteSImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
@@ -22,7 +22,19 @@ public class Game extends Thread{
 	private Image noteRouteJImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
 	private Image noteRouteKImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();	
 	private Image noteRouteLImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private String titleName;
+	private String difficulty;
+	private String musicTitle;
+	private Music gameMusic;
 	
+	
+	public Game(String titleName, String difficulty, String musicTitle) {
+		this.titleName = titleName;
+		this.difficulty = difficulty;
+		this.musicTitle = musicTitle;
+		gameMusic = new Music(this.musicTitle, false);
+		gameMusic.start();
+	}
 	public void screenDraw(Graphics2D g) {
 		g.drawImage(noteRouteSImage, 228, 30, null);
 		g.drawImage(noteRouteDImage, 332, 30, null);
@@ -40,15 +52,14 @@ public class Game extends Thread{
 		g.drawImage(noteRouteLineImage, 844, 30, null);
 		g.drawImage(noteRouteLineImage, 948, 30, null);
 		g.drawImage(noteRouteLineImage, 1052, 30, null);
-		g.drawImage(noteBasicImage, 228, 120, null);
 		g.drawImage(gameInfoImage, 0, 660, null);
 		g.drawImage(judgmentLineImage, 0, 580, null);
 		g.setColor(Color.WHITE);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial",Font.BOLD,30));
-		g.drawString("Start", 20, 702);
-		g.drawString("Easy", 1190, 702);
+		g.drawString(titleName, 20, 702);
+		g.drawString(difficulty, 1190, 702);
 		g.setFont(new Font("Arial",Font.BOLD,26));
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("S",270,609);
@@ -117,6 +128,12 @@ public class Game extends Thread{
 	public void run() {
 		// TODO Auto-generated method stub
 		super.run();
+	}
+
+	//게임 종료 메소드(쓰레드를 종료시킴)
+	public void close() {
+		gameMusic.close();
+		this.interrupt();
 	}
 	
 }

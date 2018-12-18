@@ -69,7 +69,7 @@ public class DynamicBeat extends JFrame {
 	private int nowSelected = 0; // Array의 인덱스
 	
 	//game의 기능만 가지고 있는 클레스 작성
-	public static Game game = new Game();
+	public static Game game;
 	
 	public DynamicBeat() {
 		setUndecorated(true);
@@ -89,13 +89,13 @@ public class DynamicBeat extends JFrame {
 		// track리스트
 		trackList.add(new Track("Start Of Something New Title Image.png", "Start Of Something New Start Image.jpg",
 				"Start Of Something New Game Image.jpg", "Start of something new Selected.mp3",
-				"High School Musical-Start of something new.mp3"));
+				"High School Musical-Start of something new.mp3","Start Of Something New"));
 		trackList.add(new Track("I Gotta Go My Own Way Title Image.png", "I Gotta Go My Own Way Start Image.jpg",
 				"I Gotta Go My Own Way Game Image.jpg", "I Gotta Go My Own Way Selected.mp3",
-				"High School Musical 2 - I Gotta Go My Own Way.mp3"));
+				"High School Musical 2 - I Gotta Go My Own Way.mp3","I Gotta Go My Own Way"));
 		trackList.add(
 				new Track("Now Or Never Title Image.png", "Now Or Never Start Image.jpg", "Now Or Never game Image.jpg",
-						"Now Or Never Selected.mp3", "High School Musical 3 - Now Or Never.mp3"));
+						"Now Or Never Selected.mp3", "High School Musical 3 - Now Or Never.mp3","Now Or Never"));
 
 		// 닫기버튼
 		exitButton.setBounds(1245, 0, 30, 30);
@@ -273,7 +273,7 @@ public class DynamicBeat extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				Music buttonPressedMusic = new Music("buttonPressedMusic.mp3", false);
 				buttonPressedMusic.start();
-				gameStart(nowSelected, "easy");
+				gameStart(nowSelected, "Easy");
 			}
 		});
 		add(easyButton);
@@ -301,7 +301,7 @@ public class DynamicBeat extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				Music buttonPressedMusic = new Music("buttonPressedMusic.mp3", false);
 				buttonPressedMusic.start();
-				gameStart(nowSelected, "hard");
+				gameStart(nowSelected, "Hard");
 			}
 		});
 		add(hardButton);
@@ -417,6 +417,7 @@ public class DynamicBeat extends JFrame {
 		isGameScreen = true;
 		//화면이 계속 바뀌다보면 위치에 문제가 생길 수도 있어서 넣어줌..
 		setFocusable(true);
+		game = new Game(trackList.get(nowSelected).getTitleName(),difficulty,trackList.get(nowSelected).getGameMusic());
 	}
 
 	public void backMain() {
@@ -429,6 +430,7 @@ public class DynamicBeat extends JFrame {
 		background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();
 		selectTrack(nowSelected);
 		isGameScreen = false;
+		game.close();
 	}
 
 	public void enterMain() {

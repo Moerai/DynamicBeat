@@ -7,6 +7,8 @@ public class Track {
 	private String gameImamge;
 	private String startMusic;
 	private String gameMusic;
+	private String titleName;
+	
 	public String getTitleImage() {
 		return titleImage;
 	}
@@ -37,12 +39,19 @@ public class Track {
 	public void setGameMusic(String gameMusic) {
 		this.gameMusic = gameMusic;
 	}
-	public Track(String titleImage, String startImage, String gameImamge, String startMusic, String gameMusic) {
+	public String getTitleName() {
+		return titleName;
+	}
+	public void setTitleName(String titleName) {
+		this.titleName = titleName;
+	}
+	public Track(String titleImage, String startImage, String gameImamge, String startMusic, String gameMusic, String titleName) {
 		super();
 		this.titleImage = titleImage;
 		this.startImage = startImage;
 		this.gameImamge = gameImamge;
 		this.startMusic = startMusic;
 		this.gameMusic = gameMusic;
+		this.titleName = titleName;
 	}
 }
