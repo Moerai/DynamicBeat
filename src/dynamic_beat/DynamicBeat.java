@@ -70,6 +70,7 @@ public class DynamicBeat extends JFrame {
 	public static Game game;
 
 	public DynamicBeat() {
+		setUndecorated(true);
 		// track리스트
 		trackList.add(new Track("Start Of Something New Title Image.png", "Start Of Something New Start Image.jpg",
 				"Start Of Something New Game Image.jpg", "Start of something new Selected.mp3",
@@ -79,7 +80,6 @@ public class DynamicBeat extends JFrame {
 				"High School Musical 2 - I Gotta Go My Own Way.mp3", "I Gotta Go My Own Way"));
 		trackList.add(new Track("Now Or Never Title Image.png", "Now Or Never Start Image.jpg", "Now Or Never game Image.jpg",
 						"Now Or Never Selected.mp3", "High School Musical 3 - Now Or Never.mp3", "Now Or Never"));
-		setUndecorated(true);
 		setTitle("DynamicBeat");
 		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HIGHT);
 		setResizable(false);
@@ -366,7 +366,7 @@ public class DynamicBeat extends JFrame {
 		this.repaint();
 	}
 
-	public void paintStartOfSomethingNew(Graphics g) {
+	public void print(Graphics g) {
 		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HIGHT);
 		screenGraphic = screenImage.getGraphics();
 		screenDraw((Graphics2D) screenGraphic);

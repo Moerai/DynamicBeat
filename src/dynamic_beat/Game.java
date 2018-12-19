@@ -34,6 +34,7 @@ public class Game extends Thread{
 		this.difficulty = difficulty;
 		this.musicTitle = musicTitle;
 		gameMusic = new Music(this.musicTitle, false);
+		gameMusic.start();
 	}
 	public void screenDraw(Graphics2D g) {
 		g.drawImage(noteRouteSImage, 228, 30, null);
@@ -135,27 +136,12 @@ public class Game extends Thread{
 	}
 	
 	public void dropNotes() {
-		Beat[] beats = null;
-		if(titleName.equals("Start Of Something New")){
-			int startTime = 4460 - Main.REACH_TIME * 1000;
-			int gap = 125;
-			beats = new Beat[] {
-					new Beat(startTime, "S"),
-					new Beat(startTime + gap*2,"D")
-			};
-		}else if(titleName.equals("I Gotta Go My Own Way")) {
-			int startTime = 1000;
-			beats = new Beat[] {
-					new Beat(startTime,"Space"),
-			};
-		}else if(titleName.equals("Now Or Never")) {
-			int startTime = 1000;
-			beats = new Beat[] {
-					new Beat(startTime,"Space"),
-			};
-		}
+		Beat[] beats = {
+				new Beat(1000,"S"),
+				new Beat(2000,"D"),
+				new Beat(3000,"F")
+		};
 		int i = 0;
-		gameMusic.start();
 		while(true) {
 			if(beats[i].getTime()<=gameMusic.getTime()) {
 				Note note = new Note(beats[i].getNoteName());
@@ -163,7 +149,6 @@ public class Game extends Thread{
 				noteList.add(note);
 				i++;
 			}
-			
 		}
 //		note.start();
 //		noteList.add(note);

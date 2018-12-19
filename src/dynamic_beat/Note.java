@@ -9,7 +9,7 @@ public class Note extends Thread{
 
 	private Image noteBasicImage = new ImageIcon(Main.class.getResource("../images/noteBasic.png")).getImage();
 	private int x;
-	private long y = 580 - (1000/Main.SLEEP_TIME * Main.NOTE_SPEED)*Main.REACH_TIME;
+	private long y = 580 - 1000/Main.SLEEP_TIME * Main.NOTE_SPEED;
 	private String noteType;
 	
 	public Note(String noteType) {
