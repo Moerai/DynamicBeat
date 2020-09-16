@@ -1,0 +1,15 @@
+## Git Ignore File##
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+*.html
+
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+local.properties
+/src/main/resources/rebel.xml
